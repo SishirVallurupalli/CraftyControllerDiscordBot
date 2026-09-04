@@ -1,0 +1,13 @@
+services:
+  discord-minecraft-bot:
+    build: .
+    container_name: discord-minecraft-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - minecraft-control
+
+networks:
+  minecraft-control:
+    name: minecraft-control
