@@ -15,7 +15,7 @@ jobs:
         run: docker build . --file Dockerfile --tag crafty-discord-bot:latest
 
       - name: Save Docker image
-        run: docker save my-image:latest -o my-image.tar
+        run: docker save my-image:latest -o crafty-discord-bot.tar
 
       - name: Upload Docker image
         uses: actions/upload-artifact@v4
