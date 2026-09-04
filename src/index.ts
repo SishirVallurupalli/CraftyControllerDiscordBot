@@ -2,6 +2,7 @@ import {
   Client,
   Events,
   GatewayIntentBits,
+  MessageFlags,
   REST,
   Routes,
   type ChatInputCommandInteraction,
@@ -30,12 +31,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand() || interaction.commandName !== "server") return;
 
   if (!canControl(interaction)) {
-    await interaction.reply({ content: "You are not allowed to control the Minecraft server.", ephemeral: true });
+    await interaction.reply({ content: "You are not allowed to control the Minecraft server.", flags: MessageFlags.Ephemeral });
     return;
   }
 
   const action = interaction.options.getSubcommand(true) as ServerAction;
-  await interaction.deferReply({ ephemeral: true });
+  await interaction.deferReply({ flags: MessageFlags.Ephemeral });
   try {
     const output = await runServerAction(action);
     await interaction.editReply(`Server **${action}** command completed.\n\`\`\`\n${output.slice(0, 1_700)}\n\`\`\``);
