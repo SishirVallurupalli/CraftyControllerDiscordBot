@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag MinecraftDiscordBot:latest
+        run: docker build . --file Dockerfile --tag crafty-discord-bot:latest
 
       - name: Save Docker image
         run: docker save my-image:latest -o my-image.tar
