@@ -12,14 +12,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build . --file Dockerfile --tag crafty-discord-bot:latest
+        run: |
+          docker build -f Dockerfile -t crafty-discord-bot:latest .
 
-      - name: Save Docker image
-        run: docker save crafty-discord-bot:latest -o crafty-discord-bot.tar
+      - name: Save Docker image as TAR
+        run: |
+          docker save -o crafty-controller-bot.tar crafty-discord-bot:latest
+          ls -lh my-image.tar
 
-      - name: Upload Docker image
+      - name: Upload Docker image TAR
         uses: actions/upload-artifact@v4
         with:
-          name: crafty-discord-bot
-          path: crafty-discord-bot.tar
-          retention-days: 7
+          name: crafty-controller-bot
+          path: crafty-controller-bot.tar
+          if-no-files-found: error
