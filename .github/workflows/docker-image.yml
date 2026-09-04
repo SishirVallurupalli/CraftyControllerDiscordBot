@@ -18,7 +18,7 @@ jobs:
       - name: Save Docker image as TAR
         run: |
           docker save -o crafty-controller-bot.tar crafty-discord-bot:latest
-          ls -lh my-image.tar
+          ls -lh crafty-controller-bot.tar
 
       - name: Upload Docker image TAR
         uses: actions/upload-artifact@v4
